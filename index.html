@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Charles</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<!-- JS Assets-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="js/vue.min.js"></script>
+	<div id="app">
+		<!-- {{message}} -->
+		<nav>
+			<div class="nav nav-tabs nav-justified bg-primary" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link active" id="nav-rem-tab" data-toggle="tab" href="#nav-rem" role="tab" aria-controls="nav-rem" aria-selected="true">
+					<b>Rem</b>
+				</a>
+				<a class="nav-item nav-link" id="nav-starter-tab" data-toggle="tab" href="#nav-starter" role="tab" aria-controls="nav-starter" aria-selected="false">
+					<b>Starter</b>
+				</a>
+				<a class="nav-item nav-link" id="nav-lampu-tab" data-toggle="tab" href="#nav-lampu" role="tab" aria-controls="nav-lampu" aria-selected="false">
+					<b>Lampu</b>
+				</a>
+				<a class="nav-item nav-link" id="nav-gas-tab" data-toggle="tab" href="#nav-gas" role="tab" aria-controls="nav-gas" aria-selected="false">
+					<b>Gas</b>
+				</a>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-rem" role="tabpanel" aria-labelledby="nav-home-rem">
+				<div class="container mt-5" v-for="i in isi" :key="i.no">
+					<div class="card text-white bg-primary mb-3" v-if="i.no == key">
+						<div class="card-header"><span class="help_outline">?</span></div>
+						<div class="card-body">
+							<h3 class="card-title">{{i.t}}</h3>
+							<p v-if="v1 == true">solusi : {{i.j}}</p>
+							<hr/>
+							<p class="card-text">
+								<div v-if="i.no != isi.length">
+									<button class="btn btn-success" v-on:click="v1 = true">Benar</button>
+									<button class="btn btn-danger" v-on:click="key++, v1 = false">Tidak</button>
+								</div>
+								<div v-if="i.no == isi.length">
+									<button class="btn btn-warning" v-on:click="key = 1">Kembali</button>
+								</div>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="nav-starter" role="tabpanel" aria-labelledby="nav-starter-tab">
+				<div class="container mt-5" v-for="j in isi2" :key="j.no">
+					<div class="card text-white bg-primary mb-3" v-if="j.no == key2">
+						<div class="card-header"><span class="help_outline">?</span></div>
+						<div class="card-body">
+							<h3 class="card-title">{{j.t}}</h3>
+							<p v-if="v2 == true">solusi : {{j.j}}</p>
+							<hr/>
+							<p class="card-text">
+								<div v-if="j.no != isi2.length">
+									<button class="btn btn-success" v-on:click="v2 = true">Benar</button>
+									<button class="btn btn-danger" v-on:click="key2++, v2 = false">Tidak</button>
+								</div>
+								<div v-if="j.no == isi2.length">
+									<button class="btn btn-warning" v-on:click="key2 = 1">Kembali</button>
+								</div>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="nav-lampu" role="tabpanel" aria-labelledby="nav-contact-lampu">
+				ini lampu
+			</div>
+			<div class="tab-pane fade" id="nav-gas" role="tabpanel" aria-labelledby="nav-contact-gas">
+				ini gas
+			</div>
+		</div>
+	</div>
+	<!-- JS Proccess -->
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello Vue!',
+			active: null,
+			v1: false,
+			v2: false,
+			v3: false,
+			v4: false,
+			key: 1,
+			key2: 1,
+			key3: 1,
+			key4: 1,
+			isi: [
+			{
+				no: 1,
+				t: 'Apakah sil master bocor?',
+				j: 'Sil master harus diganti'
+			},
+			{
+				no: 2,
+				t: 'Apakah ring piston kotor?',
+				j: 'Bersihkan ring piston'
+			},
+			{
+				no: 3,
+				t: 'Apakah kampas rem tipis?',
+				j: 'Ganti kampas rem!'
+			},
+			{
+				no: 4,
+				t: 'Problem Solved'
+			}
+			],
+			isi2: [
+			{
+				no: 1,
+				t: 'Apakah Voltage Accu kurang dari 12V dan Amphere kurang dari 3A?',
+				j: 'Accu harus diganti'
+			},
+			{
+				no: 2,
+				t: 'Apakah umur Accu lebih dari 1 tahun?',
+				j: 'Accu harus diganti'
+			},
+			{
+				no: 3,
+				t: 'Apakah switch starter tidak berbunyi?',
+				j: 'Ganti switch starter'
+			},
+			{
+				no: 4,
+				t: 'Apakah arang starter kurang atau sama dengan 0,2?',
+				j: 'Ganti'
+			},
+			{
+				no: 5,
+				t: 'Apakah lahar dinamo meleleh?',
+				j: 'Ganti'
+			},
+			{
+				no: 6,
+				t: 'Apakah dinamo hangus?',
+				j: 'Ganti'
+			},
+			{
+				no: 7,
+				t: 'Problem Solved'
+			}
+			]
+		},
+		methods: {
+			al: function (par) {
+				alert(par)
+			}
+		}
+	})
+</script>
+</body>
+</html>
+<style type="text/css">
+	.nav a{
+		color: white;
+	}
+</style>
